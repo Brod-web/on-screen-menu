@@ -29,16 +29,16 @@
           <h4 class="card-title text-center my-1">Vos données</h4>
         </div>
         <div class="card-body text-center">
-          <p class="mt-2 mb-4">Lien vers votre carte : <br><a href=""><?=$resto->carte_link?></a></p>
+          <p class="mt-2 mb-4">Lien vers votre carte : <br><a href="<? echo base_url('front/index')?>"><?=$resto->carte_link?></a></p>
 
-          <a href="<? echo base_url('back/menus')?>" class="btn btn-success mt-4" style="width: 220px;">Menus & formules</a>
+          <a href="<? echo base_url('back/menus')?>" class="btn btn-success mt-4" style="width: 80%;">Menus & formules</a>
           <p>Votre carte contient <?=$countMenus?> menu(s) <br><a href="">Ajouter un menu</a></p>
           
-          <a href="<? echo base_url('back/categories')?>" class="btn btn-success mt-4" style="width: 220px;">Catégories</a>
+          <a href="<? echo base_url('back/categories')?>" class="btn btn-success mt-4" style="width: 80%;">Catégories</a>
           <p>Votre carte contient <?=$countCategories?> catégorie(s) <br><a href="<? echo base_url('back/add_category')?>">Ajouter une catégorie</a></p>
           
           <?$restoId = $this->session->restoId?>
-          <a href="<? echo base_url("back/choose_categorie/$restoId")?>" class="btn btn-success mt-4" style="width: 220px;">Produits</a>
+          <a href="<? echo base_url("back/choose_categorie/$restoId")?>" class="btn btn-success mt-4" style="width: 80%;">Produits</a>
           <p>Votre carte contient <?=$countProducts?> produit(s) <br><a href="<? echo base_url('back/add_product')?>">Ajouter un produit</a></p>
         </div>
       </div>

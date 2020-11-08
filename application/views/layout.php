@@ -19,18 +19,18 @@
 <div class="container-fluid fond-grey">
     <h1 class="ml-3 siteName orange text-center">On-Screen Menu <span class="white"><small>... Votre carte sur le web</small></span></h1>
     <div class="row mx-auto justify-content-between border-top border-dark">
-        <div class="col-lg-3 d-flex flex-column justify-content-between fond-dashboard" style="height: 580px;" >
+        <div class="col-lg-3 col-md-3 col-sm-6 d-flex flex-column justify-content-between" style="height: 660px;">
             <small class="mt-3 siteName white fond-grey text-center">Bienvenue <?=$this->session->pseudo?></small>
             <ul class="ml-3">
                 
                 <?$restoId = $this->session->restoId?>
-                <li><a class="btn btn-info mb-2 mt-2 menu" 
+                <li><a class="btn btn-info mb-2 menu" 
                 href="<? echo base_url('back')?>">Tableau de bord</a></li>
 
                 <li><a class="btn btn-info mb-2 menu" 
                 href="<? echo base_url('back/restaurant')?>">Restaurant</a></li>
 
-                <li><a  class="btn btn-info mb-2 menu" 
+                <li><a  class="btn btn-info mb-4 menu" 
                 href="<? echo base_url('customs')?>">Personnalisation</a></li>
 
                 <li><a class="btn btn-info mb-2 menu" 
@@ -51,27 +51,35 @@
                     href="">Gestion quantités</a></li>
                 </div>
 
-                <li><a class="btn btn-info mb-5 menu" 
+                <li><a class="btn btn-info mb-4 menu" 
                 href="<? echo base_url("login/deconnexion")?>">Déconnexion</a></li>
+
+                <li><a class="btn btn-success mb-4 menu" 
+                href="<? echo base_url("front/index")?>">Démonstration</a></li>
+                <div class="position-relative">
+                    <div class="bulle-fork">
+                        <span><i class="fas fa-utensils"></i></span>
+                    </div>
+                </div>
 
                 <?if($options->maintenance > 0){?>
                     <div id="maintenance" style="visibility: visible;">
                 <?} else {?>
                     <div id="maintenance" style="visibility: hidden;">
                 <?}?>
-                    <li><a class="btn btn-danger" style="width: 190px;">En maintenance</a></li>
+                    <li><a class="btn btn-danger menu">En maintenance</a></li>
                     <div class="position-relative">
-                        <div class="bulle">
+                        <div class="bulle-key">
                             <span><i class="fas fa-wrench"></i></span>
                         </div>
                     </div>
                 </div>
             </ul>
             <div>
-                <footer class="text-center orange fond-grey"><strong>On-Screen Menu | &copy; Brod-web <?=date('Y')?></strong></footer>
+                <footer class="text-center orange fond-grey mb-3"><strong>On-Screen Menu | &copy; Brod-web <?=date('Y')?></strong></footer>
             </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-md-12 col-sm-12">
 
             <?=$output?>
 

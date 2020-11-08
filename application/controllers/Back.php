@@ -4,24 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Back extends CI_Controller
 {
 	function index(){
-		$this->load->model('Resto_Model');
-		//$this->load->model('MY_Model');
-
 		$userId = $this->session->id;
 
 		if($this->Resto_Model->checkRestoExist($userId)) {
             // Resto déjà créé
 			$data['resto'] = $this->Resto_Model->getResto($userId);
 			$this->session->restoId = $data['resto']->id;
-			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
 			
 			$this->load->model('Menu_Model');
 			$this->load->model('Category_Model');
 			$this->load->model('Product_Model');
+
+			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
 			$data['countMenus'] = $this->Menu_Model->countMenus($data['resto']->id);
 			$data['countCategories'] = $this->Category_Model->countCategories($data['resto']->id);
 			$data['countProducts'] = $this->Product_Model->countProducts($data['resto']->id);
 			//$this->MY_Model->debug($data);
+
 			$this->layout->set_title('Dashboard');
 			$this->layout->view('back/dashboard',$data);
 			
@@ -40,18 +39,18 @@ class Back extends CI_Controller
 	}
 	
 	function restaurant(){
-		$this->load->model('Resto_Model');
-		
 		$userId = $this->session->id;
 		$restoId = $this->session->restoId;
 		$data['resto'] = $this->Resto_Model->getResto($userId);
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
+		//$this->MY_Model->debug($data);
 
 		if ($this->form_validation->run() == FALSE){
 			$this->layout->set_title('Restaurant');
 			$this->layout->view('back/restaurant',$data);
-			// TODO mettre en rouge erreurs ... ne marche pas
+			
 			$error = $this->session->set_flashdata('error', validation_errors());
-			echo "<div><p style='color:red;'>$error</p></div>";
+			echo $error;
 		} else {
 			$data = array(
 				'name' => $this->input->post('name'),
@@ -71,15 +70,15 @@ class Back extends CI_Controller
 	function categories(){
 		$this->load->model('Category_Model');
 		$this->load->model('Product_Model');
-		//$this->load->model('MY_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['categories'] = $this->Category_Model->getCatAll($restoId);
 		
 		foreach($data['categories'] as $cat){
 			$data['count'][$cat->id] = $this->Product_Model->countProductsByCat($restoId,$cat->id);
 		}
-		//$this->MY_Model->debug($data);
+		
 		$this->layout->set_title('Catégories');
 		$this->layout->view('back/categories',$data);
 		
@@ -89,6 +88,7 @@ class Back extends CI_Controller
 		$this->load->model('Category_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['icons'] = $this->Category_Model->getIcons();
 
 		if ($this->form_validation->run() == FALSE){
@@ -118,6 +118,7 @@ class Back extends CI_Controller
 		$this->load->model('Category_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['cat'] = $this->Category_Model->getCat($catId);
 		$data['icons'] = $this->Category_Model->getIcons();
 
@@ -171,6 +172,8 @@ class Back extends CI_Controller
 
 	function Choose_categorie($restoId){
 		$this->load->model('Category_Model');
+		
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
 
 		$this->layout->set_title('Produits');
@@ -179,7 +182,9 @@ class Back extends CI_Controller
 
 	function products_by_cat($catId){
 		$this->load->model('Product_Model');
-		
+
+		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['products'] = $this->Product_Model->getProductByCat($catId);
 
 		$this->layout->set_title('Produits');
@@ -191,6 +196,7 @@ class Back extends CI_Controller
 		$this->load->model('Product_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
 
 		if ($this->form_validation->run() == FALSE){
@@ -216,6 +222,7 @@ class Back extends CI_Controller
 		$this->load->model('Product_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
 		$data['product'] = $this->Product_Model->getProduct($productId);
 
@@ -273,16 +280,15 @@ class Back extends CI_Controller
 
 	function menus(){
 		$this->load->model('Menu_Model');
-		//$this->load->model('MY_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['menus'] = $this->Menu_Model->getMenuAll($restoId);
 		
 		foreach($data['menus'] as $menu){
 			$data['countCats'][$menu->id] = $this->Menu_Model->countMenusCats($menu->id);
 			$data['countProducts'][$menu->id] = $this->Menu_Model->countMenusProducts($menu->id);
 		}
-		//$this->MY_Model->debug($data);
 		$this->layout->set_title('Menus');
 		$this->layout->view('back/menus',$data);
 		
@@ -293,6 +299,7 @@ class Back extends CI_Controller
 		$this->load->model('Category_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['cats'] = $this->Category_Model->getCatAll($restoId);
 
 		if ($this->form_validation->run() == FALSE){
@@ -330,6 +337,7 @@ class Back extends CI_Controller
 		$this->load->model('Product_Model');
 		
 		$restoId = $this->session->restoId;
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['menu'] = $this->Menu_Model->getMenu($menuId);
 
 		//gestion catégories

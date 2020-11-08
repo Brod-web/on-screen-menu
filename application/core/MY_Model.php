@@ -10,6 +10,11 @@ class MY_Model extends CI_Model {
         echo "</pre>";        
     }
 
+    public function nav(){
+        $this->load->model('Resto_Model');
+        $this->Resto_Model->setResto();
+    }
+
     /*public function __get($attr){
         $method = 'get'.ucFirst($attr);
         return $this->$method();
