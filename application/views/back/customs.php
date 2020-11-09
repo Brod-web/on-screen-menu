@@ -55,7 +55,7 @@
               </div>
               <input type="file" class="form-control-file mb-4" name="logo_url" value="<?=$resto->logo_url?>">
             </div>
-            <select class="custom-select mb-4" name="fond">
+            <select class="custom-select mb-4" name="fond" value="<?=$resto->fond_url?>">
               <option selected>Choisissez votre fond de carte</option>
               <option value="1">Fond 1</option>
               <option value="2">Fond 2</option>

@@ -40,6 +40,11 @@ class Resto_Model extends MY_Model {
         return $this->db->delete('restaurant', $restoId);
     }
 
+    public function addOptions($data)
+    {
+        return $this->db->insert('options', $data);
+    }
+
     public function getOptions($restoId)
 	{
         $this->db->from('options');
@@ -51,7 +56,7 @@ class Resto_Model extends MY_Model {
 
     public function modifOptions($restoId, $data)
     {
-        $this->db->where('id', $restoId);
+        $this->db->where('restaurant_id', $restoId);
         return $this->db->update('options', $data);
     }
 }

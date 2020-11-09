@@ -8,17 +8,17 @@ class Back extends CI_Controller
 
 		if($this->Resto_Model->checkRestoExist($userId)) {
             // Resto déjà créé
+			$restoId = $this->session->restoId;
 			$data['resto'] = $this->Resto_Model->getResto($userId);
-			$this->session->restoId = $data['resto']->id;
 			
 			$this->load->model('Menu_Model');
 			$this->load->model('Category_Model');
 			$this->load->model('Product_Model');
 
-			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
-			$data['countMenus'] = $this->Menu_Model->countMenus($data['resto']->id);
-			$data['countCategories'] = $this->Category_Model->countCategories($data['resto']->id);
-			$data['countProducts'] = $this->Product_Model->countProducts($data['resto']->id);
+			$data['options'] = $this->Resto_Model->getOptions($restoId);
+			$data['countMenus'] = $this->Menu_Model->countMenus($restoId);
+			$data['countCategories'] = $this->Category_Model->countCategories($restoId);
+			$data['countProducts'] = $this->Product_Model->countProducts($restoId);
 			//$this->MY_Model->debug($data);
 
 			$this->layout->set_title('Dashboard');
@@ -32,6 +32,17 @@ class Back extends CI_Controller
 			$this->Resto_Model->addResto($data);
 			$data['resto'] = $this->Resto_Model->getResto($userId);
 			$this->session->restoId = $data['resto']->id;
+
+			// Création options pour ce resto
+			$options = array(
+				'maintenance' => '1',
+				'quantity' => '0',
+				'QR_code' => '0',
+				'geoloc' => '0',
+				'restaurant_id' => $data['resto']->id
+			);
+			$this->Resto_Model->addOptions($options);
+			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
 			
 			$this->layout->set_title('Restaurant');
 			$this->layout->view('back/restaurant',$data);

@@ -24,7 +24,7 @@ class Signin extends CI_Controller {
 			$this->User_Model->addUser($data);
 			$userId = $this->db->insert_id();
 			$this->User_Model->setSession($userId);
-	        redirect('dashboard');
+	        redirect('back');
 	    } 
 	}
 }

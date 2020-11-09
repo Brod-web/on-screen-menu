@@ -44,7 +44,8 @@
       </div>
 
       <div class="card" style="width: 25rem;">
-        <?=form_open("customs/modes_sel/$restoId")?>
+        <?php echo validation_errors(); ?>
+        <?=form_open("customs/modes_sel")?>
         <div class="card-header">
           <h4 class="card-title text-center my-1">Vos options</h4>
         </div>

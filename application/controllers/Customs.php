@@ -31,21 +31,21 @@ class Customs extends CI_Controller
 		}
 	}
 	
-	function modes_sel($restoId){
-		$this->load->model('Resto_Model');
-
+	function modes_sel(){
+		$restoId = $this->session->restoId;
+		
 		if ($this->form_validation->run() == FALSE){
 			$this->layout->set_title('Dashboard');
 			$this->layout->view('back/dashboard');
 			// TODO mettre en rouge erreurs ... ne marche pas
 			$error = $this->session->set_flashdata('error', validation_errors());
-			echo "<div><p style='color:red;'>$error</p></div>";
+			echo $error;
 		} else {
 			$data = array(
 				'maintenance' => $this->input->post('switch1'),
-				'quantity' => $this->input->post('switch2'),
-				'QR_code' => $this->input->post('switch3'),
-				'geoloc' => $this->input->post('switch4')
+				'quantity' => $this->input->post('switch2')
+				//'QR_code' => $this->input->post('switch3'),
+				//'geoloc' => $this->input->post('switch4')
 			);
 			$this->Resto_Model->modifOptions($restoId, $data);
 			redirect('back/index');
