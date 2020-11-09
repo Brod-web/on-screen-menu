@@ -4,15 +4,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Customs extends CI_Controller
 {
     function index(){
-		$this->load->model('Resto_Model');
-		//$this->load->model('MY_Model');
 		$userId = $this->session->id;
 		$restoId = $this->session->restoId;
 		$data['resto'] = $this->Resto_Model->getResto($userId);
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		//$this->MY_Model->debug($data);
-		$this->layout->set_title('Personnalisation');
-		$this->layout->view('back/customs',$data);
+
+		if ($this->form_validation->run() == FALSE){
+			$this->layout->set_title('Personnalisation');
+			$this->layout->view('back/customs',$data);
+			
+			$error = $this->session->set_flashdata('error', validation_errors());
+			echo $error;
+		} else {
+			$data = array(
+				'facebook' => $this->input->post('facebook'),
+				'instagram' => $this->input->post('instagram'),
+        		'twitter' => $this->input->post('twitter'),
+        		'phrase' => $this->input->post('phrase'),
+        		'QR_code' => $this->input->post('QR_code'),
+        		'logo_url' => $this->input->post('logo_url'),
+        		'fond_url' => $this->input->post('fond_url'),
+			);
+			$this->Resto_Model->modifResto($restoId, $data);
+			redirect('customs/index');
+		}
 	}
 	
 	function modes_sel($restoId){
@@ -34,5 +50,12 @@ class Customs extends CI_Controller
 			$this->Resto_Model->modifOptions($restoId, $data);
 			redirect('back/index');
 		}
+	}
+
+	function QR_code(){
+		$this->load->library('ciqrcode');
+		header("Content-Type: image/png");
+		$params['data'] = 'hello+world';
+		$this->ciqrcode->generate($params);
 	}
 }

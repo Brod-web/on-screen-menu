@@ -69,6 +69,44 @@ $config = array(
         )
     ),
 
+    'customs/index' => array(
+        array(
+            'field' => 'facebook',
+            'label' => 'Facebook',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'instagram',
+            'label' => 'Instagram',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'twitter',
+            'label' => 'Twitter',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'phrase',
+            'label' => 'Phrase',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'QR_code',
+            'label' => 'QR_code',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'logo_url',
+            'label' => 'Logo_url',
+            'rules' => 'trim'
+        ),
+        array(
+            'field' => 'fond_url',
+            'label' => 'Fond_url',
+            'rules' => 'trim'
+        )
+    ),
+
     'customs/modes_sel' => array(
         array(
             'field' => 'switch1',
