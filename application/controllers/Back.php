@@ -3,22 +3,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Back extends CI_Controller
 {
-	function index(){
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Menu_Model');
+		$this->load->model('Category_Model');
+		$this->load->model('Product_Model');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+	}
+	
+	function index()
+	{
 		$userId = $this->session->id;
 
 		if($this->Resto_Model->checkRestoExist($userId)) {
             // Resto déjà créé
-			$restoId = $this->session->restoId;
 			$data['resto'] = $this->Resto_Model->getResto($userId);
+			$this->session->restoId = $data['resto']->id;
 			
 			$this->load->model('Menu_Model');
 			$this->load->model('Category_Model');
 			$this->load->model('Product_Model');
 
-			$data['options'] = $this->Resto_Model->getOptions($restoId);
-			$data['countMenus'] = $this->Menu_Model->countMenus($restoId);
-			$data['countCategories'] = $this->Category_Model->countCategories($restoId);
-			$data['countProducts'] = $this->Product_Model->countProducts($restoId);
+			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
+			$data['countMenus'] = $this->Menu_Model->countMenus($data['resto']->id);
+			$data['countCategories'] = $this->Category_Model->countCategories($data['resto']->id);
+			$data['countProducts'] = $this->Product_Model->countProducts($data['resto']->id);
 			//$this->MY_Model->debug($data);
 
 			$this->layout->set_title('Dashboard');
@@ -49,7 +59,9 @@ class Back extends CI_Controller
 		}
 	}
 	
-	function restaurant(){
+	// RESTAURANT //
+	function restaurant()
+	{
 		$userId = $this->session->id;
 		$restoId = $this->session->restoId;
 		$data['resto'] = $this->Resto_Model->getResto($userId);
@@ -78,10 +90,9 @@ class Back extends CI_Controller
 		}
 	}
 	
-	function categories(){
-		$this->load->model('Category_Model');
-		$this->load->model('Product_Model');
-		
+	// CATEGORIE //
+	function categories()
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['categories'] = $this->Category_Model->getCatAll($restoId);
@@ -95,9 +106,8 @@ class Back extends CI_Controller
 		
 	}
 
-	function add_category(){
-		$this->load->model('Category_Model');
-		
+	function add_category()
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['icons'] = $this->Category_Model->getIcons();
@@ -125,9 +135,8 @@ class Back extends CI_Controller
 		}
 	}
 
-	function mod_category($catId){
-		$this->load->model('Category_Model');
-		
+	function mod_category($catId)
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['cat'] = $this->Category_Model->getCat($catId);
@@ -150,16 +159,15 @@ class Back extends CI_Controller
 		}
 	}
 
-	function del_category($catId){
-		$this->load->model('Category_Model');
-
+	function del_category($catId)
+	{
 		$this->Category_Model->delCatLinks($catId);
 		$this->Category_Model->delCat($catId);
 		redirect("back/categories");
 	}
 
-	function order_category($catId){
-		$this->load->model('Category_Model');
+	function order_category($catId)
+	{
 		$order = $this->Category_Model->orderCat($catId)->show_order;
 
 		if($this->input->post('order') === '+'){
@@ -181,9 +189,8 @@ class Back extends CI_Controller
 		}
 	}
 
-	function Choose_categorie($restoId){
-		$this->load->model('Category_Model');
-		
+	function Choose_categorie($restoId)
+	{
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
 
@@ -191,9 +198,9 @@ class Back extends CI_Controller
 		$this->layout->view('back/products',$data);
 	}
 
-	function products_by_cat($catId){
-		$this->load->model('Product_Model');
-
+	// PRODUIT //
+	function products_by_cat($catId)
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['products'] = $this->Product_Model->getProductByCat($catId);
@@ -202,10 +209,8 @@ class Back extends CI_Controller
 		$this->layout->view('back/products_by_cat',$data);
 	}
 
-	function add_product(){
-		$this->load->model('Category_Model');
-		$this->load->model('Product_Model');
-		
+	function add_product()
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
@@ -228,10 +233,8 @@ class Back extends CI_Controller
 		}
 	}
 
-	function mod_product($productId){
-		$this->load->model('Category_Model');
-		$this->load->model('Product_Model');
-		
+	function mod_product($productId)
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['catList'] = $this->Category_Model->getCatAll($restoId);
@@ -256,8 +259,8 @@ class Back extends CI_Controller
 		}
 	}
 
-	function del_product($productId){
-		$this->load->model('Product_Model');
+	function del_product($productId)
+	{
 		$catId = $this->Product_Model->getProduct($productId)->cat_product_id;
 
 		$this->Product_Model->delProductLinks($productId);
@@ -265,8 +268,8 @@ class Back extends CI_Controller
 		redirect("back/products_by_cat/$catId");
 	}
 
-	function order_product($productId){
-		$this->load->model('Product_Model');
+	function order_product($productId)
+	{
 		$order = $this->Product_Model->orderProduct($productId)->show_order;
 		$catId = $this->Product_Model->orderProduct($productId)->cat_product_id;
 
@@ -289,9 +292,9 @@ class Back extends CI_Controller
 		}
 	}
 
-	function menus(){
-		$this->load->model('Menu_Model');
-		
+	// MENU //
+	function menus()
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['menus'] = $this->Menu_Model->getMenuAll($restoId);
@@ -305,10 +308,8 @@ class Back extends CI_Controller
 		
 	}
 
-	function add_menu(){
-		$this->load->model('Menu_Model');
-		$this->load->model('Category_Model');
-		
+	function add_menu()
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['cats'] = $this->Category_Model->getCatAll($restoId);
@@ -342,11 +343,8 @@ class Back extends CI_Controller
 		
 	}
 
-	function mod_menu($menuId){
-		$this->load->model('Menu_Model');
-		$this->load->model('Category_Model');
-		$this->load->model('Product_Model');
-		
+	function mod_menu($menuId)
+	{
 		$restoId = $this->session->restoId;
 		$data['options'] = $this->Resto_Model->getOptions($restoId);
 		$data['menu'] = $this->Menu_Model->getMenu($menuId);
@@ -416,16 +414,16 @@ class Back extends CI_Controller
 		}
 	}
 
-	function del_menu($menuId){
-		$this->load->model('Menu_Model');
+	function del_menu($menuId)
+	{
 		$data['menu'] = $this->Menu_Model->getMenu($menuId);
 
 		$this->Menu_Model->delMenu($menuId);
 		redirect('back/menus');
 	}
 
-	function order_menu($menuId){
-		$this->load->model('Menu_Model');
+	function order_menu($menuId)
+	{
 		$order = $this->Menu_Model->orderMenu($menuId)->show_order;
 
 		if($this->input->post('order') === '+'){

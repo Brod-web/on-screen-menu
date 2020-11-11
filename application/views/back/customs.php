@@ -4,7 +4,8 @@
     <div class="d-flex justify-content-between mt-3">
       <div class="card-deck">
 
-        <div class="card" style="width: 35rem;">
+        <!-- PRESENTATION -->
+        <div class="card" style="width: 33rem;">
           <div class="card-header">
             <h4 class="card-title text-center my-1">Présentation</h4>
           </div>
@@ -29,40 +30,79 @@
             </div>
 
             <h5>Phrase d'accroche :</h5> 
-            <input class="form-control mb-4" type="text" name="phrase" value="<?=$resto->phrase?>" placeholder="Une phrase d'accroche, quelques mots sur votre restaurant..."/>
+            <input class="form-control" type="text" name="phrase" value="<?=$resto->phrase?>" placeholder="Une phrase d'accroche, quelques mots sur votre restaurant..."/>
 
-            <h5>QR code:</h5> 
-            <input class="form-control mb-4" type="text" name="QR_code" value="<?=$resto->QR_code?>" placeholder="Générer votre QR code..."/>
-            
-          </div>
-          <div class="card-footer text-center">
-            <input class="btn btn-info" type="submit" name="submit" value="Enregistrer les modifications"/>
+            <div class="text-center mt-4 mb-4">
+              <input class="btn btn-info" type="submit" name="submit" value="Enregistrer ces liens et la phrase d'accroche"/>
+            </div>
+  </form>
+
+            <!-- LOGO -->
+            <div class="d-flex">
+              <div class="mr-3">
+                <h5>Logo personnel :</h5>
+              </div>
+              <?if($resto->logo_url !== ''){?>
+                <div>
+                  <p><?=$resto->logo_url?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+              <div>
+                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
+              </div>
+            </div>
+            <?if($resto->logo_url !== ''){?>
+              <div>
+                <img src="<? echo base_url().'/uploads/'.$resto->logo_url?>" class="card-img" alt="logo">
+              </div>
+            <?}?>
+
+            <!-- QR CODE -->
+            <div class="d-flex mt-3">
+              <div class="mr-3">
+                <h5>QR code :</h5>
+              </div>
+              <?if($resto->QR_code !== ''){?>
+                <div>
+                  <p><?=$resto->QR_code?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+              <div>
+                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="card" style="width: 35rem;">
+
+        <!-- FOND -->
+        <div class="card" style="width: 33rem;">
           <div class="card-header">
-            <h4 class="card-title text-center my-1">Graphismes</h4>
+            <h4 class="card-title text-center my-1">Fond de carte</h4>
           </div>
+          
           <div class="card-body">
-            
-            <div class="form-group">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Logo</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Choisissez votre logo d'entête">
-              </div>
-              <input type="file" class="form-control-file mb-4" name="logo_url" value="<?=$resto->logo_url?>">
-            </div>
-            <select class="custom-select mb-4" name="fond" value="<?=$resto->fond_url?>">
-              <option selected>Choisissez votre fond de carte</option>
+            <!--<div class="alert alert-success" role="alert">
+              <?$msg = "Vous avez le choix entre l'un de nos fonds ou le votre.";
+              echo $msg;?>
+            </div>-->
+           
+            <h5>Fonds proposés :</h5>
+            <select class="custom-select mb-4" name="fond">
+              <option selected>Choisissez l'un de ces 5 fonds</option>
               <option value="1">Fond 1</option>
               <option value="2">Fond 2</option>
               <option value="3">Fond 3</option>
               <option value="4">Fond 4</option>
               <option value="5">Fond 5</option>
-              <option value="6">Fond personnel</option>
             </select>
             
             <!--Carousel Wrapper-->
@@ -167,12 +207,33 @@
             </div>
             <!--/.Carousel Wrapper-->
 
-            <input type="file" class="form-control-file mt-3" name="fond_perso" value="<?=$resto->fond_url?>">
-          </div>
+            <!-- FOND PERSO -->
+            <div class="d-flex mt-3">
+              <div class="mr-3">
+                <h5>Fond personnel :</h5>
+              </div>
+              <?if($resto->fond_url !== ''){?>
+                <div>
+                  <p><?=$resto->fond_url?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+              <div>
+                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
+              </div>
+            </div>
+            <?if($resto->fond_url !== ''){?>
+              <div>
+                <img src="<? echo base_url().'/uploads/'.$resto->fond_url?>" class="card-img" alt="fond">
+              </div>
+            <?}?>
         </div>
-      <div>
+      </div>
     <div>
-  </form>
+  <div>
 </div>
             
         

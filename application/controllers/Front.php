@@ -3,10 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Front extends CI_Controller
 {
-    function index(){
-		$this->load->model('Resto_Model');
+	public function __construct()
+	{
+		parent::__construct();
 		$this->load->model('Menu_Model');
-		
+	}
+	
+	public function index()
+	{
 		$userId = $this->session->id;
 		$restoId = $this->session->restoId;
 

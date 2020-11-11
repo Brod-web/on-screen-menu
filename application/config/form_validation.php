@@ -89,21 +89,6 @@ $config = array(
             'field' => 'phrase',
             'label' => 'Phrase',
             'rules' => 'trim'
-        ),
-        array(
-            'field' => 'QR_code',
-            'label' => 'QR_code',
-            'rules' => 'trim'
-        ),
-        array(
-            'field' => 'logo_url',
-            'label' => 'Logo_url',
-            'rules' => 'trim'
-        ),
-        array(
-            'field' => 'fond_url',
-            'label' => 'Fond_url',
-            'rules' => 'trim'
         )
     ),
 
