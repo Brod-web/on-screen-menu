@@ -20,7 +20,7 @@
     <h1 class="ml-3 siteName orange text-center">On-Screen Menu <span class="white"><small>... Votre carte sur le web</small></span></h1>
     <div class="row mx-auto justify-content-between border-top border-dark">
         <div class="col-lg-3 col-md-3 col-sm-6 d-flex flex-column justify-content-between" style="height: 660px;">
-            <small class="mt-3 siteName white fond-grey text-center">Bienvenue <?=$this->session->pseudo?></small>
+            <p class="mt-3 siteName white fond-grey text-center"><?=$this->session->pseudo?></p>
             <ul class="ml-3">
                 
                 <?$restoId = $this->session->restoId?>

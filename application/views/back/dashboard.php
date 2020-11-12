@@ -17,7 +17,7 @@
           <li class="list-group-item "><?=$resto->adresse?>
           <br><?=$resto->CP?> <?=$resto->ville?></li>
           <li class="list-group-item">Téléphone : <?=$resto->phone?></li>
-          <li class="list-group-item">Web link : <a class="text-center"><?=$resto->web_url?></a></li>
+          <li class="list-group-item">Web : <a class="text-center"><?=$resto->web_url?></a></li>
         </ul>
         <div class="card-footer text-center">
           <a href="<? echo base_url('back/restaurant')?>" class="btn btn-info">Modifier</a>
@@ -77,10 +77,10 @@
           <input type="checkbox" class="custom-control-input" id="switch4" name="switch4">
           <label class="custom-control-label" for="switch4">Géolocalisation
         </div>-->
-        <p class="mt-4 mb-4">Logo : <br><a href=""><?=$resto->name?></a></p>
-        <p class="mt-2 mb-4">Réseaux sociaux : <br><a href=""><?=$resto->name?></a></p>
-        <p class="mt-2 mb-4">Présentation : <br><a href=""><?=$resto->name?></a></p>
-        <p class="mt-2 mb-4">Image de fond : <br><a href=""><?=$resto->name?></a></p>
+        <p class="mt-4 mb-4">Logo : <br><a href="">Voir ... Personnalisation</a></p>
+        <p class="mt-2 mb-4">Réseaux sociaux : <br><a href="">Voir ... Personnalisation</a></p>
+        <p class="mt-2 mb-4">Présentation : <br><a href="">Voir ... Personnalisation</a></p>
+        <p class="mt-2 mb-4">Image de fond : <br><a href="">Voir ... Personnalisation</a></p>
       </div>
       <div class="card-footer text-center">
         <input class="btn btn-info" type="submit" name="submit" value="Modifier"/>

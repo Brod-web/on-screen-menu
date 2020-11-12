@@ -15,21 +15,21 @@ class Upload extends CI_Controller {
 
     public function upload_photo()
     {
-        $config['upload_path']          = './uploads/';
+        $config['upload_path']          = "./uploads/";
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 200;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
 
         $this->load->library('upload', $config);
-
+        $restoId = $this->session->restoId;
+        
         if ($this->upload->do_upload('photoFile')) {
             $data = array('upload_data' => $this->upload->data());
             $photo_name = array('photo_name' => $data['upload_data']['file_name']);
             $this->load->view('upload_form', $photo_name);
             
             $resto = array('photo_url' => $data['upload_data']['file_name']);
-            $restoId = $this->session->restoId;
             $this->Resto_Model->modifResto($restoId, $resto);
         } else {
             $error = array('error' => $this->upload->display_errors());
@@ -47,6 +47,7 @@ class Upload extends CI_Controller {
         $config['max_height']           = 768;
 
         $this->load->library('upload', $config);
+        $restoId = $this->session->restoId;
 
         if ($this->upload->do_upload('logoFile')) {
             $data = array('upload_data' => $this->upload->data());
@@ -54,7 +55,6 @@ class Upload extends CI_Controller {
             $this->load->view('upload_form', $logo_name);
             
             $resto = array('logo_url' => $data['upload_data']['file_name']);
-            $restoId = $this->session->restoId;
             $this->Resto_Model->modifResto($restoId, $resto);
         } else {
             $error = array('error' => $this->upload->display_errors());
@@ -72,6 +72,7 @@ class Upload extends CI_Controller {
         $config['max_height']           = 768;
 
         $this->load->library('upload', $config);
+        $restoId = $this->session->restoId;
 
         if ($this->upload->do_upload('fondFile')) {
             $data = array('upload_data' => $this->upload->data());
@@ -79,7 +80,6 @@ class Upload extends CI_Controller {
             $this->load->view('upload_form', $fond_name);
 
             $resto = array('fond_url' => $data['upload_data']['file_name']);
-            $restoId = $this->session->restoId;
             $this->Resto_Model->modifResto($restoId, $resto);
         } else {
             $error = array('error' => $this->upload->display_errors());

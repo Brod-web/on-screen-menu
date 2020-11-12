@@ -99,34 +99,16 @@
               </div>
               <?}?>
             </div>  
-  </form>
-
-  <!-- QR CODE -->
-            <div class="d-flex mt-3">
-              <div class="mr-3">
-                <h5>QR code :</h5>
-              </div>
-              <?if($resto->QR_code !== ''){?>
-                <div>
-                  <p><?=$resto->QR_code?></p>
-                </div>
-              <?} else {?>
-                <div>
-                  <p>non défini</p>
-                </div>
-              <?}?>
-              <div>
-                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
-              </div>
-            </div>
           </div>
         </div>
+  </form>
+
 
 
   <!-- FOND -->
         <div class="card" style="width: 33rem;">
           <div class="card-header">
-            <h4 class="card-title text-center my-1">Fond de carte</h4>
+            <h4 class="card-title text-center my-1">Fond de carte / QR code</h4>
           </div>
           
           <div class="card-body">
@@ -299,10 +281,37 @@
               <?}?>
             </div>  
   </form>
+
+  <!-- QR CODE -->
+            <div class="d-flex mt-3">
+              <div class="mr-3">
+                <h5>QR code :</h5>
+              </div>
+              <?if($resto->QR_code !== ''){?>
+                <div>
+                  <p><?=$resto->QR_code?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+            </div>
+            
+            <div class="d-flex">
+              <div>
+                <a class="btn btn-info" href="<? echo base_url("customs/QR_code/$resto->carte_link")?>">Générer</a>
+              </div>
+              <?if($resto->QR_code !== ''){?>
+              <div class="text-right">
+                <img src="<? echo base_url().'/uploads/'.$resto->QR_code?>" width="45%" alt="QR_code">
+              </div>
+              <?}?>
+            </div>
+          </div>
         </div>
-      </div>
+      <div>
     <div>
-  <div>
-</div>
+  </div>
             
         
