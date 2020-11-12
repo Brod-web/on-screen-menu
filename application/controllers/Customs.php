@@ -56,28 +56,24 @@ class Customs extends CI_Controller
 		}
 	}
 
-	/*function add_logo()
-    {
-		//$this->load->view('upload_form', array('error' => ' ' ));
-		
-		$config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+	function choose_background()
+	{
+		$userId = $this->session->id;
+		$restoId = $this->session->restoId;
+		$data['resto'] = $this->Resto_Model->getResto($userId);
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 
-		$this->load->library('upload', $config);
-		echo "add_logo";
-
-        if (!$this->upload->add_logo('userfile')){
-            $error = array('error' => $this->upload->display_errors());
-			$this->load->view('upload_form', $error);
+		if ($this->form_validation->run() == FALSE){
+			$this->layout->set_title('Personnalisation');
+			$this->layout->view('back/customs',$data);
 		} else {
-            $data = array('upload_data' => $this->upload->data());
-			$this->load->view('upload_success', $data);
-			echo "Fichier chargé avec succés";
-        }
-	}*/
+			$data = array(
+				'fond' => $this->input->post('fond')
+			);
+			$this->Resto_Model->modifOptions($restoId, $data);
+			redirect('customs/index');
+		}
+	}
 
 	function QR_code()
 	{
@@ -87,26 +83,67 @@ class Customs extends CI_Controller
 		$this->ciqrcode->generate($params);
 	}
 
-	/*function add_fond_perso()
-    {
-		//$this->load->view('upload_form', array('error' => ' ' ));
-		
-		$config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+	function del_photo($img)
+	{
+		$userId = $this->session->id;
+		$restoId = $this->session->restoId;
+		$data['resto'] = $this->Resto_Model->getResto($userId);
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
 
-        $this->load->library('upload', $config);
-
-        if ( !$this->upload->add_fond_perso('fond_perso')){
-            $error = array('error' => $this->upload->display_errors());
-			//$this->load->view('upload_form', $error);
-			echo $error;
+		if ($this->form_validation->run() == FALSE){
+			$this->layout->set_title('Personnalisation');
+			$this->layout->view('back/customs',$data);
 		} else {
-            $data = array('upload_data' => $this->upload->data());
-			//$this->load->view('upload_success', $data);
-			echo "Fichier chargé avec succés";
-        }
-    }*/
+			unlink(base_url("uploads/" . $img));
+
+			$data = array(
+				'photo_url' => ''
+			);
+			$this->Resto_Model->modifResto($restoId, $data);
+			redirect('customs/index');
+		}
+	}
+
+	function del_logo($img)
+	{
+		$userId = $this->session->id;
+		$restoId = $this->session->restoId;
+		$data['resto'] = $this->Resto_Model->getResto($userId);
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
+
+		if ($this->form_validation->run() == FALSE){
+			$this->layout->set_title('Personnalisation');
+			$this->layout->view('back/customs',$data);
+		} else {
+			unlink(base_url("uploads/" . $img));
+
+			$data = array(
+				'logo_url' => ''
+			);
+			$this->Resto_Model->modifResto($restoId, $data);
+			redirect('customs/index');
+		}
+	}
+
+	function del_fond($img)
+	{
+		$userId = $this->session->id;
+		$restoId = $this->session->restoId;
+		$data['resto'] = $this->Resto_Model->getResto($userId);
+		$data['options'] = $this->Resto_Model->getOptions($restoId);
+
+		if ($this->form_validation->run() == FALSE){
+			$this->layout->set_title('Personnalisation');
+			$this->layout->view('back/customs',$data);
+		} else {
+			unlink(base_url("uploads/" . $img));
+
+			$data = array(
+				'fond_url' => ''
+			);
+			$this->Resto_Model->modifResto($restoId, $data);
+			redirect('customs/index');
+		}
+	}
+
 }

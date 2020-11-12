@@ -105,6 +105,38 @@ $config = array(
         )
     ),
 
+    'customs/choose_background' => array(
+        array(
+            'field' => 'fond',
+            'label' => 'Fond',
+            'rules' => 'trim'
+        )
+    ),
+
+    'customs/del_photo' => array(
+        array(
+            'field' => 'photo_url',
+            'label' => 'Photo_url',
+            'rules' => 'trim'
+        )
+    ),
+
+    'customs/del_logo' => array(
+        array(
+            'field' => 'logo_url',
+            'label' => 'Logo_url',
+            'rules' => 'trim'
+        )
+    ),
+
+    'customs/del_fond' => array(
+        array(
+            'field' => 'fond_url',
+            'label' => 'Fond_url',
+            'rules' => 'trim'
+        )
+    ),
+
     'back/add_category' => array(
         array(
             'field' => 'name',

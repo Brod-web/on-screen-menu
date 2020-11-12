@@ -48,12 +48,6 @@
                 </div>
             </div>
             
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Lien photo</span>
-                </div>
-                <input type="text" class="form-control" name="photo_url" value="<?=$resto->photo_url?>">
-            </div>
             <input class="btn btn-info" type="submit" name="submit" value="Enregistrer les modifications"/>
         </div>
     </form>

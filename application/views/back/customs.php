@@ -33,11 +33,45 @@
             <input class="form-control" type="text" name="phrase" value="<?=$resto->phrase?>" placeholder="Une phrase d'accroche, quelques mots sur votre restaurant..."/>
 
             <div class="text-center mt-4 mb-4">
-              <input class="btn btn-info" type="submit" name="submit" value="Enregistrer ces liens et la phrase d'accroche"/>
+              <input class="btn btn-info" type="submit" name="submit" value="Enregistrer ces liens et la phrase"/>
             </div>
   </form>
 
-            <!-- LOGO -->
+  <!-- PHOTO -->
+  <?php echo validation_errors(); ?>
+  <?=form_open("customs/del_photo/$resto->photo_url")?>
+            <div class="d-flex">
+              <div class="mr-3">
+                <h5>Photo du restaurant :</h5>
+              </div>
+              <?if($resto->photo_url !== ''){?>
+                <div>
+                  <p><?=$resto->photo_url?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+            </div>
+            <div class="d-flex">
+              <div>
+                <a class="btn btn-info mb-2" href="<? echo base_url('upload')?>" style="width: 100px;">Modifier</a>
+                <?if($resto->photo_url !== ''){?>
+                  <input class="btn btn-danger" type="submit" name="submit" value="Supprimer" style="width: 100px;">
+                <?}?>
+              </div>
+              <?if($resto->photo_url !== ''){?>
+              <div class="text-right mb-3">
+                <img src="<? echo base_url().'/uploads/'.$resto->photo_url?>" width="90%" alt="photo">
+              </div>
+              <?}?>
+            </div>  
+  </form>
+
+  <!-- LOGO -->
+  <?php echo validation_errors(); ?>
+  <?=form_open("customs/del_logo/$resto->logo_url")?>
             <div class="d-flex">
               <div class="mr-3">
                 <h5>Logo personnel :</h5>
@@ -51,17 +85,23 @@
                   <p>non défini</p>
                 </div>
               <?}?>
-              <div>
-                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
-              </div>
             </div>
-            <?if($resto->logo_url !== ''){?>
+            <div class="d-flex">
               <div>
-                <img src="<? echo base_url().'/uploads/'.$resto->logo_url?>" class="card-img" alt="logo">
+                <a class="btn btn-info mb-2" href="<? echo base_url('upload')?>" style="width: 100px;">Modifier</a>
+                <?if($resto->logo_url !== ''){?>
+                  <input class="btn btn-danger" type="submit" name="submit" value="Supprimer" style="width: 100px;">
+                <?}?>
               </div>
-            <?}?>
+              <?if($resto->logo_url !== ''){?>
+              <div class="text-right mb-3">
+                <img src="<? echo base_url().'/uploads/'.$resto->logo_url?>" width="90%" alt="logo">
+              </div>
+              <?}?>
+            </div>  
+  </form>
 
-            <!-- QR CODE -->
+  <!-- QR CODE -->
             <div class="d-flex mt-3">
               <div class="mr-3">
                 <h5>QR code :</h5>
@@ -83,27 +123,48 @@
         </div>
 
 
-        <!-- FOND -->
+  <!-- FOND -->
         <div class="card" style="width: 33rem;">
           <div class="card-header">
             <h4 class="card-title text-center my-1">Fond de carte</h4>
           </div>
           
           <div class="card-body">
-            <!--<div class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert">
               <?$msg = "Vous avez le choix entre l'un de nos fonds ou le votre.";
               echo $msg;?>
-            </div>-->
+            </div>
+
+            <?=form_open('customs/choose_background')?>
+            <div class="d-flex flex-wrap justify-content-start">
+              <div>
+                <select class="custom-select mb-4" name="fond">
+                  <?if($options->fond == '0'){?>
+                    <option value="0" selected>Aucun fond sélectionné</option>
+                  <?} else {?>
+                    <option value="0">Aucun fond sélectionné</option>
+                  <?}?>
+                  <?for($i=1 ; $i < 6 ; $i++){?>
+                    <?if($options->fond == $i){?>
+                      <option value="<?=$i?>" selected>Fond <?=$i?></option>
+                    <?} else {?>
+                      <option value="<?=$i?>">Fond <?=$i?></option>
+                    <?}?>
+                  <?}?>
+                  <?if($options->fond == '6'){?>
+                    <option value="6" selected>Fond personnel</option>
+                  <?} else {?>
+                    <option value="6">Fond personnel</option>
+                  <?}?>
+                </select>
+              </div>
+              <div class="text-center">
+                <input class="btn btn-info ml-3" type="submit" name="submit" value="Sélectionner">
+              </div>
+            </div>
+            </form>
            
             <h5>Fonds proposés :</h5>
-            <select class="custom-select mb-4" name="fond">
-              <option selected>Choisissez l'un de ces 5 fonds</option>
-              <option value="1">Fond 1</option>
-              <option value="2">Fond 2</option>
-              <option value="3">Fond 3</option>
-              <option value="4">Fond 4</option>
-              <option value="5">Fond 5</option>
-            </select>
             
             <!--Carousel Wrapper-->
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -207,7 +268,9 @@
             </div>
             <!--/.Carousel Wrapper-->
 
-            <!-- FOND PERSO -->
+  <!-- FOND PERSO -->
+  <?php echo validation_errors(); ?>
+  <?=form_open("customs/del_fond/$resto->fond_url")?>
             <div class="d-flex mt-3">
               <div class="mr-3">
                 <h5>Fond personnel :</h5>
@@ -221,15 +284,21 @@
                   <p>non défini</p>
                 </div>
               <?}?>
-              <div>
-                <a class="ml-3" href="<? echo base_url('upload')?>">Modifier</a>
               </div>
-            </div>
-            <?if($resto->fond_url !== ''){?>
+            <div class="d-flex">
               <div>
-                <img src="<? echo base_url().'/uploads/'.$resto->fond_url?>" class="card-img" alt="fond">
+                <a class="btn btn-info mb-2" href="<? echo base_url('upload')?>" style="width: 100px;">Modifier</a>
+                <?if($resto->fond_url !== ''){?>
+                  <input class="btn btn-danger" type="submit" name="submit" value="Supprimer" style="width: 100px;">
+                <?}?>
               </div>
-            <?}?>
+              <?if($resto->fond_url !== ''){?>
+              <div class="text-right mb-3">
+                <img src="<? echo base_url().'/uploads/'.$resto->fond_url?>" width="90%" alt="fond">
+              </div>
+              <?}?>
+            </div>  
+  </form>
         </div>
       </div>
     <div>
