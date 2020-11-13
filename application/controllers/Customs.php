@@ -83,14 +83,14 @@ class Customs extends CI_Controller
 		$params['data'] = "$carte_link";
 		$params['level'] = 'H';
 		$params['size'] = 10;
-		$params['savename'] = FCPATH."uploads/$restoId-QR_code.png";
+		$params['savename'] = FCPATH."uploads/$restoId/QR_code.png";
 		$this->ciqrcode->generate($params);
 
 		$data = array(
-			'QR_code' => "$restoId-QR_code.png"
+			'QR_code' => "QR_code.png"
 		);
 		$this->Resto_Model->modifResto($restoId, $data);
-		redirect('customs/index');
+		redirect('back/index');
 	}
 
 	function del_photo($img)
@@ -104,7 +104,7 @@ class Customs extends CI_Controller
 			$this->layout->set_title('Personnalisation');
 			$this->layout->view('back/customs',$data);
 		} else {
-			unlink(base_url("uploads/$img"));
+			unlink("./uploads/$img");
 
 			$data = array(
 				'photo_url' => ''
@@ -125,7 +125,7 @@ class Customs extends CI_Controller
 			$this->layout->set_title('Personnalisation');
 			$this->layout->view('back/customs',$data);
 		} else {
-			unlink(base_url("uploads/$img"));
+			unlink("./uploads/$img");
 
 			$data = array(
 				'logo_url' => ''
@@ -146,7 +146,7 @@ class Customs extends CI_Controller
 			$this->layout->set_title('Personnalisation');
 			$this->layout->view('back/customs',$data);
 		} else {
-			unlink(base_url("uploads/$img"));
+			unlink("./uploads/$img");
 
 			$data = array(
 				'fond_url' => ''

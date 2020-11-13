@@ -68,22 +68,47 @@
           <?}?>
           <label class="custom-control-label" for="switch2">Gestion quantités</label>
         </div>
+        <!-- TODO after
         <div class="custom-control custom-switch my-2">
           <input type="checkbox" class="custom-control-input" id="switch3" name="switch3">
           <label class="custom-control-label" for="switch3">QR code</label>
-        </div>
-        <!-- TODO after 
+        </div> 
         <div class="custom-control custom-switch my-2">
           <input type="checkbox" class="custom-control-input" id="switch4" name="switch4">
           <label class="custom-control-label" for="switch4">Géolocalisation
         </div>-->
-        <p class="mt-4 mb-4">Logo : <br><a href="">Voir ... Personnalisation</a></p>
-        <p class="mt-2 mb-4">Réseaux sociaux : <br><a href="">Voir ... Personnalisation</a></p>
-        <p class="mt-2 mb-4">Présentation : <br><a href="">Voir ... Personnalisation</a></p>
-        <p class="mt-2 mb-4">Image de fond : <br><a href="">Voir ... Personnalisation</a></p>
-      </div>
-      <div class="card-footer text-center">
-        <input class="btn btn-info" type="submit" name="submit" value="Modifier"/>
+
+        <div class="text-center">
+          <input class="btn btn-info mr-2 mt-4 mb-3" type="submit" name="submit" value="Valider modes"/>
+          <a class="btn btn-info mt-4 mb-3" href="<? echo base_url("customs/QR_code/$resto->carte_link")?>">Créer QR code</a>
+        </div>
+
+        <!-- QR CODE -->
+            <div class="d-flex">
+              <div class="mr-3">
+                <p>QR code :</p>
+              </div>
+              <?if($resto->QR_code !== ''){?>
+                <div>
+                  <p><?=$resto->QR_code?></p>
+                </div>
+              <?} else {?>
+                <div>
+                  <p>non défini</p>
+                </div>
+              <?}?>
+            </div>
+            
+            <div class="text-center">
+              <?if($resto->QR_code !== ''){?>
+                <div>
+                  <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->QR_code?>" width="60%" alt="QR_code">
+                </div>
+              <?}?>
+            </div>
+
+        <p class="mt-4 mb-4">Présentation : <br><a href="">Voir ... Personnalisation</a></p>
+        <p class="mt-2 mb-4">Gestion images : <br><a href="">Voir ... Personnalisation</a></p>
       </div>
       </form>
     <div>

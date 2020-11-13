@@ -5,19 +5,21 @@
     </div>
     <div class="d-flex justify-content-around">
         <div class="fond-phone mt-4">
-            <div class="phone text-center">
-                <img src="<? echo base_url().'uploads/'.$resto->logo_url?>" width="100%" alt="logo">
-                <h1 class="mt-5"><?=$resto->name?></h1>
-                <p><?=$resto->phrase?></p>
-
-                <h4>Notre carte</h4>
-                <a class="btn btn-success mb-2" href="<? echo base_url('front')?>" style="width: 150px;">Retour</a>
-                <p>with On-Screen Menu</p>
-            
-            </div>
-        </div>
-        <div class="fond-phone mt-4">
             <div class="phone text-center" style="background-image: url(../uploads/<?=$resto->fond_url?>);">
+                <div style="height:598px; overflow-y:auto" class="lowOpacity">
+                    <h4 class="mb-3 mt-3">La carte</h4>
+                    <?foreach($cats as $cat){?>
+                        <h5 class="bg-success mb-1 mt-1"><?=$cat->name?></h5>
+                        <?$products = $this->Product_Model->getProductByCat($cat->id);
+                        foreach($products as $product){?>
+                            <div>
+                                <p><?=$product->name?> | <?=$product->description?> | <?=$product->price?> €</p>
+                            </div>
+                        <?}?>
+                    <?}?>
+                    <a class="btn btn-success mb-2 mt-2" href="<? echo base_url('front')?>" style="width: 150px;">Retour</a>
+                    <p class="orange"><strong>with On-Screen Menu</strong></p>
+                </div>  
             </div>
         </div>
     </div>

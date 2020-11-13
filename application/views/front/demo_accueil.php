@@ -6,6 +6,7 @@
     <div class="d-flex justify-content-around">
         <div class="fond-phone mt-4">
             <div class="phone text-center">
+                <div>
                 <img src="<? echo base_url().'uploads/'.$resto->logo_url?>" width="100%" alt="logo">
                 <h1 class="mt-5"><?=$resto->name?></h1>
                 <p><?=$resto->phrase?></p>
@@ -19,12 +20,8 @@
                 <div>
                     <a class="btn btn-success mb-2" href="<? echo base_url('front/demo_menus')?>" style="width: 250px;">Les menus</a>
                 </div>
-                <p>with On-Screen Menu</p>
-            
-            </div>
-        </div>
-        <div class="fond-phone mt-4">
-            <div class="phone text-center" style="background-image: url(../uploads/<?=$resto->fond_url?>);">
+                <p class="orange"><strong>with On-Screen Menu</strong></p>
+                </div>
             </div>
         </div>
     </div>

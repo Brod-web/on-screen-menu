@@ -1,10 +1,11 @@
 <div class="container-fluid">
-  <?php echo validation_errors(); ?>
-  <?=form_open('customs/index')?>
-    <div class="d-flex justify-content-between mt-3">
-      <div class="card-deck">
+  <div class="d-flex justify-content-between mt-3">
+    <div class="card-deck">
+      
 
         <!-- PRESENTATION -->
+        <?php echo validation_errors(); ?>
+        <?=form_open('customs/index')?>
         <div class="card" style="width: 33rem;">
           <div class="card-header">
             <h4 class="card-title text-center my-1">Présentation</h4>
@@ -35,11 +36,11 @@
             <div class="text-center mt-4 mb-4">
               <input class="btn btn-info" type="submit" name="submit" value="Enregistrer ces liens et la phrase"/>
             </div>
-  </form>
+            </form>
 
-  <!-- PHOTO -->
-  <?php echo validation_errors(); ?>
-  <?=form_open("customs/del_photo/$resto->photo_url")?>
+            <!-- PHOTO -->
+            <?php echo validation_errors(); ?>
+            <?=form_open("customs/del_photo/$resto->photo_url")?>
             <div class="d-flex">
               <div class="mr-3">
                 <h5>Photo du restaurant :</h5>
@@ -63,15 +64,16 @@
               </div>
               <?if($resto->photo_url !== ''){?>
               <div class="text-right mb-3">
-                <img src="<? echo base_url().'/uploads/'.$resto->photo_url?>" width="90%" alt="photo">
+                <?$thumb = str_replace(".", "_thumb.", $resto->photo_url);?>
+                <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->photo_url?>" width="90%" alt="photo">
               </div>
               <?}?>
             </div>  
-  </form>
+            </form>
 
-  <!-- LOGO -->
-  <?php echo validation_errors(); ?>
-  <?=form_open("customs/del_logo/$resto->logo_url")?>
+            <!-- LOGO -->
+            <?php echo validation_errors(); ?>
+            <?=form_open("customs/del_logo/$resto->logo_url")?>
             <div class="d-flex">
               <div class="mr-3">
                 <h5>Logo personnel :</h5>
@@ -95,17 +97,17 @@
               </div>
               <?if($resto->logo_url !== ''){?>
               <div class="text-right mb-3">
-                <img src="<? echo base_url().'/uploads/'.$resto->logo_url?>" width="90%" alt="logo">
+                <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->logo_url?>" width="90%" alt="logo">
               </div>
               <?}?>
             </div>  
           </div>
         </div>
-  </form>
+        </form>
 
 
 
-  <!-- FOND -->
+        <!-- FOND -->
         <div class="card" style="width: 33rem;">
           <div class="card-header">
             <h4 class="card-title text-center my-1">Fond de carte / QR code</h4>
@@ -250,9 +252,9 @@
             </div>
             <!--/.Carousel Wrapper-->
 
-  <!-- FOND PERSO -->
-  <?php echo validation_errors(); ?>
-  <?=form_open("customs/del_fond/$resto->fond_url")?>
+            <!-- FOND PERSO -->
+            <?php echo validation_errors(); ?>
+            <?=form_open("customs/del_fond/$resto->fond_url")?>
             <div class="d-flex mt-3">
               <div class="mr-3">
                 <h5>Fond personnel :</h5>
@@ -276,42 +278,15 @@
               </div>
               <?if($resto->fond_url !== ''){?>
               <div class="text-right mb-3">
-                <img src="<? echo base_url().'/uploads/'.$resto->fond_url?>" width="90%" alt="fond">
+                <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->fond_url?>" width="90%" alt="fond">
               </div>
               <?}?>
             </div>  
-  </form>
-
-  <!-- QR CODE -->
-            <div class="d-flex mt-3">
-              <div class="mr-3">
-                <h5>QR code :</h5>
-              </div>
-              <?if($resto->QR_code !== ''){?>
-                <div>
-                  <p><?=$resto->QR_code?></p>
-                </div>
-              <?} else {?>
-                <div>
-                  <p>non défini</p>
-                </div>
-              <?}?>
-            </div>
-            
-            <div class="d-flex">
-              <div>
-                <a class="btn btn-info" href="<? echo base_url("customs/QR_code/$resto->carte_link")?>">Générer</a>
-              </div>
-              <?if($resto->QR_code !== ''){?>
-              <div class="text-right">
-                <img src="<? echo base_url().'/uploads/'.$resto->QR_code?>" width="45%" alt="QR_code">
-              </div>
-              <?}?>
-            </div>
+            </form>
           </div>
         </div>
-      <div>
     <div>
-  </div>
+  <div>
+</div>
             
         

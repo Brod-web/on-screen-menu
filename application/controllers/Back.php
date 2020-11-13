@@ -53,6 +53,9 @@ class Back extends CI_Controller
 			);
 			$this->Resto_Model->addOptions($options);
 			$data['options'] = $this->Resto_Model->getOptions($data['resto']->id);
+
+			// Création répertoire sous uploads
+			mkdir("./uploads/".$data['resto']->id);
 			
 			$this->layout->set_title('Restaurant');
 			$this->layout->view('back/restaurant',$data);
