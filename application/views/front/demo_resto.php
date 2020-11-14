@@ -7,11 +7,11 @@
         <div class="fond-phone mt-4">
             <div class="phone text-center">
                 <div style="height:598px; overflow-y:auto">
-                    <img src="<? echo base_url().'uploads/'.$resto->logo_url?>" width="100%" alt="logo">
+                    <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->logo_url?>" width="100%" alt="logo">
                     <h1 class="mt-3"><?=$resto->name?></h1>
                     <p><?=$resto->phrase?></p>
 
-                    <img src="<? echo base_url().'uploads/'.$resto->photo_url?>" width="100%" alt="photo">
+                    <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->photo_url?>" width="100%" alt="photo">
 
                     <div class="d-flex justify-content-center mt-3">
                         <h4>Contacts : <i class="fas fa-phone-square-alt mr-2"></i></h4>

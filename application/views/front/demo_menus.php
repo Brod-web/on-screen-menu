@@ -7,7 +7,7 @@
         <div class="fond-phone mt-4">
             <div class="phone text-center">
                 <div style="height:598px; overflow-y:auto">
-                    <img src="<? echo base_url().'uploads/'.$resto->logo_url?>" width="100%" alt="logo">
+                    <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->logo_url?>" width="100%" alt="logo">
                     <h1 class="mt-1"><?=$resto->name?></h1>
                     <p><?=$resto->phrase?></p>
 

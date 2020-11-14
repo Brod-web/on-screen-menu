@@ -5,7 +5,7 @@
     </div>
     <div class="d-flex justify-content-around">
         <div class="fond-phone mt-4">
-            <div class="phone text-center" style="background-image: url(../uploads/<?=$resto->fond_url?>);">
+            <div class="phone text-center" style="background-image: url(../uploads/<?=$resto->id?>/<?=$resto->fond_url?>);">
                 <div style="height:598px; overflow-y:auto" class="lowOpacity">
                     <h4 class="mb-3 mt-3"><?=$menu->name?></h4>
                     <?// Affiche si produits selectionnés ou non (uniquement catégorie sel)

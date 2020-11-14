@@ -11,7 +11,7 @@
           <h4 class="card-title text-center my-1"><?=$resto->name?></h4>
         </div>
         <div class="card-body">
-          <img src="<? echo base_url().'uploads/'.$resto->photo_url?>" class="card-img" alt="resto">
+          <img src="<? echo base_url().'uploads/'.$resto->id.'/'.$resto->photo_url?>" class="card-img" alt="resto">
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item "><?=$resto->adresse?>
