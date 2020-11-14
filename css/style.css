@@ -1,6 +1,6 @@
 /* layout */
 .fond-dashboard{
-    background-image: url(../assets/img/fond-menu.jpg);
+    background-image: url(../assets/img/fond2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 680px;
@@ -103,10 +103,6 @@ li{
 
 .lowOpacity{
     background-color: rgba(255, 255, 255, 0.9);
-}
-
-.footerMenu{
-    color: orangered;
 }
 
 

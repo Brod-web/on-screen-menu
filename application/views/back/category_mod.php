@@ -40,7 +40,8 @@
     </div>
     <hr>
     <div class="d-flex justify-content-end">
-      <input class="btn btn-info mb-3" type="submit" name="submit" value="Modifier cette categorie"/>
+      <input class="btn btn-info mr-2" type="submit" name="submit" value="Modifier cette categorie"/>
+      <a class="btn btn-info" href="<? echo base_url("back/categories")?>">Retour</a>
     </div>
   </form> 
 </div>

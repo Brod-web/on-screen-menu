@@ -1,3 +1,4 @@
+<?$restoId = $this->session->restoId;?>
 <div class="tile mt-3">
   <table class="table table-responsive table-bordered">
     <thead>
@@ -57,7 +58,8 @@
     </tbody>
   </table>
   <div>
-      <a class="btn btn-info mb-3" href="<? echo base_url('back/add_product')?>">Ajouter un produit</a>
+      <a class="btn btn-info mr-2" href="<? echo base_url('back/add_product')?>">Ajouter un produit</a>
+      <a class="btn btn-info" href="<? echo base_url("back/choose_categorie/$restoId")?>">Retour</a>
   </div>
 </div>
 

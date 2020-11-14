@@ -1,3 +1,4 @@
+<?$restoId = $this->session->restoId;?>
 <div class="container-fluid">
   <div class="alert alert-success mt-3" role="alert">
     <?$msg = "Cette page vous permet de modifier un produit à votre carte. N'oubliez pas de l'associer à une de vos catégories.";
@@ -49,7 +50,8 @@
     </div>
     <hr>
     <div class="d-flex justify-content-end">
-      <input class="btn btn-info mb-3" type="submit" value="Modifier ce produit">
+      <input class="btn btn-info mr-2" type="submit" value="Modifier ce produit">
+      <a class="btn btn-info" href="<? echo base_url("back/choose_categorie/$restoId")?>">Retour</a>
     </div>
   </form>
 </div>

@@ -44,7 +44,8 @@
 
     <hr>
     <div class="d-flex justify-content-end">
-      <input class="btn btn-info mb-3" type="submit" name="submit" value="Ajouter ce menu / formule"/>
+      <input class="btn btn-info mr-2" type="submit" name="submit" value="Ajouter ce menu / formule"/>
+      <a class="btn btn-info" href="<? echo base_url("back/menus")?>">Retour</a>
     </div>
   </form> 
 </div>  

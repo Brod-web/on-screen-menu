@@ -10,7 +10,7 @@
             <h5>Nom de l'établissement :</h5> 
             <input class="form-control mb-3" type="text" name="name" value="<?=$resto->name?>"/>
             <h5>Lien vers votre carte :</h5> 
-            <input class="form-control mb-5" type="text" name="carte_link" value="<?=$resto->carte_link?>"/>
+            <input class="form-control mb-5" type="text" name="carte_link" value="<?=$resto->carte_link?>" placeholder="votre lien.alwaysdata.net"/>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -38,7 +38,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Web</span>
                     </div>
-                    <input type="text" class="form-control" name="web_url" value="<?=$resto->web_url?>">
+                    <input type="text" class="form-control" name="web_url" value="<?=$resto->web_url?>" placeholder="www.votre site.com">
                 </div>
                 <div class="input-group mb-3 ml-3">
                     <div class="input-group-prepend">

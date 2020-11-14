@@ -13,8 +13,21 @@
 
                     <img src="<? echo base_url().'uploads/'.$resto->photo_url?>" width="100%" alt="photo">
 
-                    <h4>Nous contactez</h4>
-                    <p><?=$resto->phone?> | <?=$resto->web_url?></p>
+                    <div class="d-flex justify-content-center mt-3">
+                        <h4>Contacts : <i class="fas fa-phone-square-alt mr-2"></i></h4>
+                        <p class="mt-1"><?=$resto->phone?></p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <h4 class="mr-1"><a href="<?=$resto->facebook?>"><i class="fab fa-facebook-square mr-2"></i></a></h4>
+                        <h4 class="mr-1"><a href="<?=$resto->instagram?>"><i class="fab fa-instagram-square mr-2"></i></a></h4>
+                        <h4 class="mr-1"><a href="<?=$resto->twitter?>"><i class="fab fa-twitter-square mr-2"></i></a></h4>
+                        <h5><a href="#"><i class="fas fa-globe mr-2"></i></h5>
+                        <a href="$resto->web_url"><?=$resto->web_url?></a>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        
+                    </div>
 
                     <a class="btn btn-success mb-2 mt-2" href="<? echo base_url('front')?>" style="width: 150px;">Retour</a>
                     <p class="orange"><strong>with On-Screen Menu</strong></p>

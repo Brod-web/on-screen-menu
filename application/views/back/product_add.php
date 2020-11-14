@@ -46,8 +46,8 @@
     <hr>
     <div class="d-flex justify-content-end">
       <? $restoId = $this->session->restoId; ?>
-      <a class="btn btn-info mr-2" href="<? echo base_url("back/choose_categorie/$restoId")?>">Retour</a>
-      <input class="btn btn-info" type="submit" value="Ajouter ce produit">
+      <input class="btn btn-info mr-2" type="submit" value="Ajouter ce produit">
+      <a class="btn btn-info" href="<? echo base_url("back/choose_categorie/$restoId")?>">Retour</a>
     </div>
   </form>
 </div>  

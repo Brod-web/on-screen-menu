@@ -27,14 +27,17 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12">
-            <h4 class="mt-3 mb-4">Gérer vos images</h4>
+            <div class="d-flex mt-3 mb-4">
+                <h4 class="mr-4">Gérer vos images</h4>
+                <a class="btn btn-info" href="<? echo base_url("customs/index")?>">Retour</a>
+            </div>
             <div class="container-fluid ml-4"> 
             <?echo isset($error)? $error : '';?>   
             <?echo form_open_multipart('upload/upload_photo');?>
                 <div class="d-flex justify-content-start">
                     <div>
                         <div class="alert alert-info" role="alert">
-                            <p><strong>Photo de restaurant :</strong> merci de choisir un fichier gif, jpg ou png (max size : 200Ko).</p>
+                            <p><strong>Photo de restaurant :</strong> affichage final 340 x 340 (gif, jpg ou png ; max size : 200Ko)</p>
                             <?if(isset($photo_name)){?>
                                 <p><strong>Photo chargé avec succés</strong></p>
                             <?}?>
@@ -42,7 +45,6 @@
                         <div class="mb-5">
                             <input type="file" name="photoFile" size="20"/>
                             <input type="submit" class="btn btn-success mr-2" value="Charger ce fichier"/>
-                            <a class="btn btn-info" href="<? echo base_url("customs/index")?>">Retour</a>
                         </div>
                     </div>
                     <?if(isset($photo_name)){?>
@@ -58,7 +60,7 @@
                 <div class="d-flex justify-content-start">
                     <div>
                         <div class="alert alert-info" role="alert">
-                            <p><strong>Pour votre logo :</strong> merci de choisir un fichier gif, jpg ou png (max size : 200Ko).</p>
+                            <p><strong>Pour votre logo :</strong> affichage final 340 x 100 (gif, jpg ou png ; max size : 200Ko)</p>
                             <?if(isset($logo_name)){?>
                                 <p><strong>Logo chargé avec succés</strong></p>
                             <?}?>
@@ -66,7 +68,6 @@
                         <div class="mb-5">
                             <input type="file" name="logoFile" size="20"/>
                             <input type="submit" class="btn btn-success mr-2" value="Charger ce fichier"/>
-                            <a class="btn btn-info" href="<? echo base_url("customs/index")?>">Retour</a>
                         </div>
                     </div>
                     <?if(isset($logo_name)){?>
@@ -82,7 +83,7 @@
                 <div class="d-flex justify-content-start">
                     <div>
                         <div class="alert alert-info" role="alert">
-                            <p><strong>Pour votre fond :</strong> merci de choisir un fichier gif, jpg ou png (max size : 200Ko).</p>
+                            <p><strong>Pour votre fond :</strong> affichage final 340 x 600 (gif, jpg ou png ; max size : 200Ko)</p>
                             <?if(isset($fond_name)){?>
                                 <p><strong>Fond chargé avec succés</strong></p>
                             <?}?> 
@@ -90,7 +91,6 @@
                         <div class="mb-5">
                             <input type="file" name="fondFile" size="20"/>
                             <input type="submit" class="btn btn-success mr-2" value="Charger ce fichier"/>
-                            <a class="btn btn-info" href="<? echo base_url("customs/index")?>">Retour</a>
                         </div>
                     </div>
                     <?if(isset($fond_name)){?>
@@ -102,11 +102,12 @@
                 </div>
             </form>
 
-            <!--<?echo form_open_multipart('upload/upload_photoProduct');?>
+                <!-- TODO : ajout chargement photos produits
+                <?echo form_open_multipart('upload/upload_photoProduct');?>
                 <div class="d-flex justify-content-start">
                     <div>
                         <div class="alert alert-info" role="alert">
-                            <p><strong>Photo de produits :</strong> merci de choisir un fichier gif, jpg ou png (max size : 200Ko).</p>
+                            <p><strong>Photo de produits :</strong> affichage final 128 x 128 (gif, jpg ou png ; max size : 200Ko)</p>
                             <?if(isset($photoProduct_name)){?>
                                 <p><strong>Photo chargé avec succés</strong></p>
                             <?}?>
