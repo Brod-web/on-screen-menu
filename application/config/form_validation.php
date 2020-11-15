@@ -2,14 +2,32 @@
 $config = array(
     'login/connexion' => array(
         array(
-                'field' => 'email',
-                'label' => 'Email',
-                'rules' => 'trim|required|valid_email'
+                'field' => 'pseudo',
+                'label' => 'Pseudo',
+                'rules' => 'trim|required'
         ),
         array(
                 'field' => 'password',
                 'label' => 'Password',
                 'rules' => 'trim|required'
+        )
+    ),
+
+    'login/userChangePwd' => array(
+        array(
+                'field' => 'pseudo',
+                'label' => 'Pseudo',
+                'rules' => 'trim|required'
+        ),
+        array(
+                'field' => 'email',
+                'label' => 'Email',
+                'rules' => 'trim|required|valid_email'
+        ),
+        array(
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'trim|required'
         )
     ),
 
@@ -234,12 +252,7 @@ $config = array(
             'field' => 'price',
             'label' => 'Price',
             'rules' => 'required'
-        ),
-        /*array(
-            'field' => 'show_order',
-            'label' => 'Show_order',
-            'rules' => 'trim'
-        )*/
+        )
     ),
 
     'back/mod_menu' => array(
@@ -257,12 +270,7 @@ $config = array(
             'field' => 'price',
             'label' => 'Price',
             'rules' => 'required'
-        ),
-        /*array(
-            'field' => 'show_order',
-            'label' => 'Show_order',
-            'rules' => 'trim'
-        )*/
+        )
     ),
 
     'back/add_menu' => array(
@@ -280,12 +288,7 @@ $config = array(
             'field' => 'price',
             'label' => 'Price',
             'rules' => 'required'
-        ),
-        /*array(
-            'field' => 'show_order',
-            'label' => 'Show_order',
-            'rules' => 'trim'
-        )*/
+        )
     ),
 );
 ?>

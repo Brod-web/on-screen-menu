@@ -14,10 +14,10 @@ class User_Model extends MY_Model {
         $query = $this->db->get();
         return $query->row();
     }
-    
-    public function checkUserExist($email,$pwd)
+
+    public function validUser($userId,$hash)
 	{
-        $auth = array('email' => $email, 'password' => $pwd);
+        $auth = array('id' => $userId, 'password' => $hash);
         
         $this->db->from('user');
         $this->db->where($auth);
@@ -25,8 +25,24 @@ class User_Model extends MY_Model {
         $user = $query->row();
 
         if($query->num_rows() != 0){
-            // user déjà existant
-            return $user->id;
+            // user/pwd valide
+            return TRUE;
+        } else {
+            // user/pwd non valide
+            return FALSE;
+        }
+    }
+    
+    public function checkUserExist($pseudo,$pwd)
+	{   
+        $this->db->from('user');
+        $this->db->where('pseudo', $pseudo);
+        $query = $this->db->get();
+        $user = $query->row();
+
+        if($query->num_rows() != 0 && password_verify($pwd, $user->password)){
+            // user existant
+            return $user;
         } else {
             // user à créer
             return FALSE;
@@ -46,15 +62,31 @@ class User_Model extends MY_Model {
         return $this->db->insert('user', $data);
     }
 
-    public function modifUser()
+    public function modifUser($userId, $data)
     {
-        
+        $this->db->where('id', $userId);
+        return $this->db->update('user', $data);
     }
 
-    public function delUser()
+    public function delUser($userId)
     {
-        
+        return $this->db->delete('user', $userId);
     }
 
+    public function verifPseudoMail($pseudo, $email){
+        $auth = array('pseudo' => $pseudo, 'email' => $email);
+        
+        $this->db->from('user');
+        $this->db->where($auth);
+        $query = $this->db->get();
+        $user = $query->row();
 
+        if($query->num_rows() != 0){
+            // user/pwd valide
+            return $user;
+        } else {
+            // user/pwd non valide
+            return FALSE;
+        }
+    }
 }

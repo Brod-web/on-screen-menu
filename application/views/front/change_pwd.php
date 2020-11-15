@@ -29,8 +29,7 @@
             <div class="container-fluid">
                 <!-- Message accueil -->
                 <div class="alert alert-info mt-3 text-center" role="alert">
-                    <?$msg = "Vous êtes restaurateur, tenez un petit snack, un fast-food... <strong>On Screen Menu est fait pour vous.</strong></br>Cette application vous permez de créer et gérer vos cartes.</br>Vos clients accédent à celles-ci via un lien ou QR code sur leur portable. <strong>Testez</strong> ... Ils apprécieront le service.</br></br>
-                    <strong>Alors ... Connectez-vous</strong> ou inscrivez-vous si c'est votre première visite. <strong>Merci à vous.</strong>";
+                    <?$msg = "Tapez vos pseudo et email, ainsi qu'un nouveau mot de passe.</br>Le mot de passe sera changé si votre compte existe bien et avait été activé. ";
                     echo $msg;?>
                 </div>
                 <!-- Affichage erreurs formulaire -->
@@ -50,34 +49,22 @@
         
                 <div class="row mx-auto justify-content-around">
                     <div class="col-lg-5 mt-3">
-                        <?=form_open('login/connexion')?>
-                            <h4 class="text-center">Connection</h4>     
+                        <?=form_open('login/userChangePwd')?>
+                            <h4 class="text-center mb-4">Changement de mot de passe</h4>     
                             <div class="form-group">
                                 <h5>Pseudo</h5> 
                                 <input class="form-control" type="text" name="pseudo"/><br />
 
-                                <h5>Password</h5>
-                                <input class="form-control" type="password" name="password"/>
-
-                                <input class="btn btn-info mt-2 mb-3" type="submit" name="submit" value="Connexion" />
-                            </div>
-                        </form>
-                        <p><a href="<? echo base_url("login/userChangePwd")?>">Mot de passe oublié ?</a></p>
-                    </div>
-                    <div class="col-lg-5 mt-3">
-                        <?=form_open('signin/inscription')?>
-                            <h4 class="text-center">Inscription</h4>     
-                            <div class="form-group">
-                                <h5>User</h5> 
-                                <input class="form-control" type="text" name="pseudo"/><br />
-
-                                <h5>Email</h5> 
-                                <input class="form-control" type="text" name="email"/><br />
+                                <h5>Email</h5>
+                                <input class="form-control" type="email" name="email"/><br />
 
                                 <h5>Mot de passe</h5>
                                 <input class="form-control" type="password" name="password"/>
 
-                                <input class="btn btn-info mt-2 mb-3" type="submit" name="submit" value="Inscription" />
+                                <div class="d-flex mt-2">
+                                    <input class="btn btn-info mr-2" type="submit" name="submit" value="Enregistrer" />
+                                    <a class="btn btn-info" href="<? echo base_url("login")?>">Retour</a>
+                                </div>
                             </div>
                         </form>
                     </div>
